@@ -15,7 +15,7 @@ const CastleLayout = ({ children, className }: CastleLayoutProps) => {
   return (
     <div 
       className={cn(
-        "flex min-h-screen bg-background",
+        "flex min-h-screen bg-background transition-all duration-300 ease-in-out",
         isMobile 
           ? "flex-col overflow-auto" 
           : "flex-row overflow-hidden",
@@ -24,17 +24,17 @@ const CastleLayout = ({ children, className }: CastleLayoutProps) => {
     >
       {!isMobile && <CastleSidebar />}
       {isMobile && (
-        <div className="fixed top-0 w-full z-50">
+        <div className="fixed top-0 w-full z-50 transition-transform duration-300">
           <CastleSidebar />
         </div>
       )}
       
       <main 
         className={cn(
-          "flex-1 p-4 md:p-6 lg:p-8 overflow-auto",
+          "flex-1 overflow-auto transition-all duration-300",
           isMobile 
-            ? "mt-16 mb-4 mx-2 rounded-lg" 
-            : "m-0",
+            ? "px-3 py-20 sm:px-4 mx-auto w-full max-w-3xl" 
+            : "p-4 md:p-6 lg:p-8 m-0",
           className
         )}
       >
