@@ -1,11 +1,24 @@
-
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
-import { BookOpen, FileText, Users, Home, BookMarked, MessageSquare, Image, Award } from "lucide-react";
+import { BookOpen, FileText, Users, Home, BookMarked, MessageSquare, Image, Award, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const CastleSidebar = () => {
-  return (
-    <aside className="fixed inset-y-0 right-0 z-50 w-72 bg-[hsl(var(--castle-stone))] text-[hsl(var(--foreground))] font-arabic shadow-xl border-l border-[hsl(var(--castle-gold))]">
+  const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useIsMobile();
+
+  const toggleSidebar = () => setIsOpen(!isOpen);
+
+  const renderSidebar = () => (
+    <aside 
+      className={cn(
+        "fixed inset-y-0 right-0 z-50 w-72 bg-[hsl(var(--castle-stone))] text-[hsl(var(--foreground))] font-arabic shadow-xl border-l border-[hsl(var(--castle-gold))]",
+        isMobile 
+          ? `${isOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform ease-in-out duration-300 top-0 h-screen`
+          : 'translate-x-0'
+      )}
+    >
       <div className="flex flex-col h-full">
         {/* Castle Header */}
         <div className="castle-banner p-4 text-white text-center rounded-bl-xl">
@@ -32,6 +45,20 @@ const CastleSidebar = () => {
         </div>
       </div>
     </aside>
+  );
+
+  if (!isMobile) return renderSidebar();
+
+  return (
+    <>
+      <button 
+        onClick={toggleSidebar} 
+        className="fixed top-4 right-4 z-50 bg-[hsl(var(--castle-magic))] text-white p-2 rounded-full shadow-lg"
+      >
+        {isOpen ? <X /> : <Menu />}
+      </button>
+      {renderSidebar()}
+    </>
   );
 };
 
