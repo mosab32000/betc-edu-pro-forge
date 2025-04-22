@@ -18,6 +18,17 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				arabic: ['Tahoma', 'Arial', 'sans-serif'],
+				castle: ['"Palatino Linotype"', 'Georgia', 'serif'],
+				fantasy: ['"Comic Sans MS"', '"Segoe UI"', 'sans-serif'],
+			},
+			backgroundImage: {
+				'castle-pattern': "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbGw9InJnYmEoMzAsIDY0LCAxNzUsIDAuMSkiLz48L3N2Zz4=')",
+				'castle-stone': "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCAwIGgyMCB2MjAgaC0yMCB6IiBmaWxsPSJyZ2JhKDEwMCwgMTAwLCAxMzAsIDAuMikiLz48cGF0aCBkPSJNMjAgMjAgaDIwIHYyMCBoLTIwIHoiIGZpbGw9InJnYmEoMTAwLCAxMDAsIDEzMCwgMC4yKSIvPjwvc3ZnPg==')",
+				'castle-gradient': 'linear-gradient(to bottom, hsl(var(--castle-sky)), hsl(var(--castle-stone)))',
+				'magic-gradient': 'linear-gradient(135deg, hsl(var(--castle-magic)), hsl(var(--castle-wisdom)))',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
