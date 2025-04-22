@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +12,7 @@ import HallPage from "./pages/HallPage";
 import HeroesPage from "./pages/HeroesPage";
 import LibraryPage from "./pages/LibraryPage";
 import GalleryPage from "./pages/GalleryPage";
+import BtecEvaluatorPage from "./pages/BtecEvaluatorPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +32,7 @@ const App = () => (
           <Route path="/heroes" element={<HeroesPage />} />
           <Route path="/library" element={<LibraryPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/btec-evaluator" element={<BtecEvaluatorPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
