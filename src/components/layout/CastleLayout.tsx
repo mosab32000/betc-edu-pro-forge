@@ -1,6 +1,7 @@
 
 import { ReactNode } from "react";
 import CastleSidebar from "./CastleSidebar";
+import Nabata from "../ai/Nabata";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -43,6 +44,9 @@ const CastleLayout = ({ children, className }: CastleLayoutProps) => {
       >
         {children}
       </main>
+      
+      {/* Nabata AI Assistant */}
+      <Nabata className="bottom-4 right-4" />
     </div>
   );
 };
