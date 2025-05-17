@@ -19,7 +19,7 @@ const CastleLayout = ({ children, className }: CastleLayoutProps) => {
         isMobile 
           ? "flex-col overflow-auto" 
           : "flex-row overflow-hidden",
-        "rtl"
+        "rtl petra-background"
       )}
     >
       {!isMobile && <CastleSidebar />}
@@ -29,12 +29,15 @@ const CastleLayout = ({ children, className }: CastleLayoutProps) => {
         </div>
       )}
       
+      <div className="petra-overlay absolute inset-0 pointer-events-none"></div>
+      
       <main 
         className={cn(
-          "flex-1 overflow-auto transition-all duration-300",
+          "flex-1 overflow-auto transition-all duration-300 relative z-10",
           isMobile 
             ? "px-3 py-20 sm:px-4 mx-auto w-full max-w-3xl" 
             : "p-4 md:p-6 lg:p-8 m-0",
+          "petra-content",
           className
         )}
       >

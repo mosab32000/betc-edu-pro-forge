@@ -1,7 +1,7 @@
 
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
-import { BookOpen, FileText, Users, Home, BookMarked, MessageSquare, Image, Award, Menu, X } from "lucide-react";
+import { BookOpen, FileText, Users, Home, BookMarked, MessageSquare, Image, Award, Menu, X, Lab, Globe, History, BookCopy } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -34,6 +34,7 @@ const CastleSidebar = () => {
       className={cn(
         "fixed inset-y-0 right-0 z-50 w-72 bg-[hsl(var(--castle-stone))] text-[hsl(var(--foreground))] font-arabic shadow-xl border-l border-[hsl(var(--castle-gold))]",
         "transition-all duration-300 ease-in-out",
+        "petra-sidebar",
         isMobile && (
           isOpen 
             ? "translate-x-0" 
@@ -54,9 +55,9 @@ const CastleSidebar = () => {
         )}
 
         {/* Castle Header */}
-        <div className="castle-banner p-4 text-white text-center rounded-bl-xl">
+        <div className="petra-banner p-4 text-white text-center rounded-bl-xl">
           <h1 className="text-3xl font-bold font-castle mb-1">قلعة Betc</h1>
-          <p className="text-sm opacity-80">الأسطورية</p>
+          <p className="text-sm opacity-80">PetraVerse Edition</p>
         </div>
 
         {/* Castle Navigation */}
@@ -64,17 +65,27 @@ const CastleSidebar = () => {
           <CastleNavItem to="/" icon={<Home />} label="البوابة الرئيسية" />
           <CastleNavItem to="/tasks" icon={<FileText />} label="قاعة المهام" />
           <CastleNavItem to="/wisdom" icon={<BookOpen />} label="برج الحكمة" />
-          <CastleNavItem to="/hall" icon={<Users />} label="قاعة الأثير" />
+          <CastleNavItem to="/hall" icon={<Users />} label="ميدان الأعمدة" />
           <CastleNavItem to="/heroes" icon={<Award />} label="سجل الأبطال" />
           <CastleNavItem to="/library" icon={<BookMarked />} label="مكتبة المخطوطات" />
           <CastleNavItem to="/chat" icon={<MessageSquare />} label="غرفة الدردشة" />
-          <CastleNavItem to="/gallery" icon={<Image />} label="معرض السحر" />
+          <CastleNavItem to="/gallery" icon={<Image />} label="معرض البتراء" />
+          <CastleNavItem to="/btec-evaluator" icon={<Lab />} label="معبد الذكاء" />
+          
+          {/* New navigation items based on PetraVerse theme */}
+          <div className="pt-4 pb-2 px-2 text-sm opacity-70 border-t border-[hsla(var(--castle-gold)/0.3)] mt-4">
+            <span>عالم البتراء الرقمي</span>
+          </div>
+          <CastleNavItem to="/research" icon={<Globe />} label="وادي الأبحاث" />
+          <CastleNavItem to="/secrets" icon={<History />} label="غرفة الأسرار" />
+          <CastleNavItem to="/archive" icon={<BookCopy />} label="الدهليز الأزرق" />
         </nav>
 
         {/* Castle Footer */}
         <div className="p-4 text-center border-t border-[hsl(var(--castle-gold))] text-xs opacity-70">
           <p>تطوير: مصعب جمال الحلاحلة</p>
           <p>مدرسة أم البساتين الثانوية</p>
+          <p className="mt-1 text-[hsl(var(--castle-magic))]">PetraVerse Edition v1.0</p>
         </div>
       </div>
     </aside>

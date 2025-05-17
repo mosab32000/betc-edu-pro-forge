@@ -14,6 +14,9 @@ import LibraryPage from "./pages/LibraryPage";
 import GalleryPage from "./pages/GalleryPage";
 import BtecEvaluatorPage from "./pages/BtecEvaluatorPage";
 import NotFound from "./pages/NotFound";
+import ResearchPage from "./pages/ResearchPage";
+import SecretsPage from "./pages/SecretsPage";
+import ArchivePage from "./pages/ArchivePage";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +36,10 @@ const App = () => (
           <Route path="/library" element={<LibraryPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/btec-evaluator" element={<BtecEvaluatorPage />} />
+          {/* New PetraVerse routes */}
+          <Route path="/research" element={<ResearchPage />} />
+          <Route path="/secrets" element={<SecretsPage />} />
+          <Route path="/archive" element={<ArchivePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
