@@ -1,7 +1,6 @@
-
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
-import { BookOpen, FileText, Users, Home, BookMarked, MessageSquare, Image, Award, Menu, X, Lab, Globe, History, BookCopy } from "lucide-react";
+import { BookOpen, FileText, Users, Home, BookMarked, MessageSquare, Image, Award, Menu, X, Flasks, Globe, History, BookCopy } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -70,7 +69,7 @@ const CastleSidebar = () => {
           <CastleNavItem to="/library" icon={<BookMarked />} label="مكتبة المخطوطات" />
           <CastleNavItem to="/chat" icon={<MessageSquare />} label="غرفة الدردشة" />
           <CastleNavItem to="/gallery" icon={<Image />} label="معرض البتراء" />
-          <CastleNavItem to="/btec-evaluator" icon={<Lab />} label="معبد الذكاء" />
+          <CastleNavItem to="/btec-evaluator" icon={<Flasks />} label="معبد الذكاء" />
           
           {/* New navigation items based on PetraVerse theme */}
           <div className="pt-4 pb-2 px-2 text-sm opacity-70 border-t border-[hsla(var(--castle-gold)/0.3)] mt-4">
