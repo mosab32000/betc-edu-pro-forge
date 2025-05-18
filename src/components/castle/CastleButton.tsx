@@ -1,5 +1,5 @@
 
-import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
+import { ButtonHTMLAttributes, forwardRef, ReactNode, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface CastleButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -11,6 +11,8 @@ interface CastleButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const CastleButton = forwardRef<HTMLButtonElement, CastleButtonProps>(
   ({ className, children, variant = "primary", size = "md", icon, ...props }, ref) => {
+    const [isPressed, setIsPressed] = useState(false);
+
     const variantStyles = {
       primary: "bg-[hsl(var(--primary))] text-white hover:bg-[hsl(var(--primary))] hover:opacity-90",
       secondary: "bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(var(--secondary))] hover:opacity-90",
@@ -32,14 +34,24 @@ const CastleButton = forwardRef<HTMLButtonElement, CastleButtonProps>(
         ref={ref}
         className={cn(
           "rounded-lg font-medium transition-all transform active:scale-95 flex items-center justify-center gap-2",
+          "relative overflow-hidden animate-pop-on-hover",
+          isPressed ? "animate-button-press" : "",
           variantStyles[variant],
           sizeStyles[size],
           className
         )}
+        onMouseDown={() => setIsPressed(true)}
+        onMouseUp={() => setIsPressed(false)}
+        onMouseLeave={() => isPressed && setIsPressed(false)}
+        onTouchStart={() => setIsPressed(true)}
+        onTouchEnd={() => setIsPressed(false)}
         {...props}
       >
-        {icon && <span>{icon}</span>}
-        {children}
+        <span className="relative z-10 flex items-center justify-center gap-2">
+          {icon && <span className="animate-subtle-bounce">{icon}</span>}
+          {children}
+        </span>
+        <span className="button-glow absolute inset-0 opacity-0"></span>
       </button>
     );
   }
