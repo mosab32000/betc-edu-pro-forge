@@ -2,177 +2,306 @@
 import CastleLayout from "@/components/layout/CastleLayout";
 import CastleBanner from "@/components/castle/CastleBanner";
 import CastleCard from "@/components/castle/CastleCard";
-import { Award, TrendingUp, Medal, Star, Trophy, Crown, User, Users } from "lucide-react";
+import CastleButton from "@/components/castle/CastleButton";
+import { Award, Star, Trophy, Medal, Crown, Shield, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+
+interface Hero {
+  id: number;
+  name: string;
+  rank: string;
+  points: number;
+  achievements: number;
+  badge: string;
+  level: number;
+}
+
+const HEROES_DATA: Hero[] = [
+  { 
+    id: 1, 
+    name: "أحمد خالد", 
+    rank: "بطل البتراء الذهبي", 
+    points: 1250, 
+    achievements: 15, 
+    badge: "gold", 
+    level: 5 
+  },
+  { 
+    id: 2, 
+    name: "سارة محمود", 
+    rank: "فارسة المعرفة", 
+    points: 1120, 
+    achievements: 12, 
+    badge: "magic", 
+    level: 4 
+  },
+  { 
+    id: 3, 
+    name: "محمد علي", 
+    rank: "حكيم الصحراء", 
+    points: 980, 
+    achievements: 10, 
+    badge: "wisdom", 
+    level: 4 
+  },
+  { 
+    id: 4, 
+    name: "لينا عبدالله", 
+    rank: "حارسة القلعة", 
+    points: 870, 
+    achievements: 9, 
+    badge: "stone", 
+    level: 3 
+  },
+  { 
+    id: 5, 
+    name: "عمر سليمان", 
+    rank: "مستكشف النقوش", 
+    points: 750, 
+    achievements: 8, 
+    badge: "gold", 
+    level: 3 
+  },
+  { 
+    id: 6, 
+    name: "ريم جمال", 
+    rank: "عالمة الآثار", 
+    points: 690, 
+    achievements: 7, 
+    badge: "magic", 
+    level: 3 
+  },
+  { 
+    id: 7, 
+    name: "يوسف أحمد", 
+    rank: "حامي التراث", 
+    points: 560, 
+    achievements: 6, 
+    badge: "stone", 
+    level: 2 
+  },
+  { 
+    id: 8, 
+    name: "نور الدين", 
+    rank: "راوي القصص", 
+    points: 510, 
+    achievements: 5, 
+    badge: "wisdom", 
+    level: 2 
+  }
+];
 
 const HeroesPage = () => {
-  return (
-    <CastleLayout>
-      <CastleBanner
-        title="سجل الأبطال"
-        subtitle="تتبع تقدم الطلاب وعرض إنجازاتهم"
-        icon={<Award />}
-        variant="default"
-      />
+  const [heroes, setHeroes] = useState<Hero[]>([]);
+  const [filter, setFilter] = useState<string>("all");
 
-      <div className="space-y-8">
-        <div className="bg-[hsla(var(--primary)/0.05)] border border-[hsla(var(--primary)/0.2)] rounded-xl p-6">
-          <div className="flex flex-col items-center text-center space-y-4">
-            <div className="relative">
-              <div className="w-24 h-24 rounded-full bg-[hsla(var(--castle-stone)/0.3)] flex items-center justify-center">
-                <User size={40} className="text-[hsl(var(--primary))]" />
+  useEffect(() => {
+    // محاكاة تحميل البيانات من الخادم
+    setTimeout(() => {
+      setHeroes(HEROES_DATA);
+    }, 300);
+  }, []);
+
+  const getBadgeIcon = (badge: string) => {
+    switch (badge) {
+      case "gold":
+        return <Trophy className="text-[hsl(var(--castle-gold))]" />;
+      case "magic":
+        return <Star className="text-[hsl(var(--castle-magic))]" />;
+      case "wisdom":
+        return <Crown className="text-[hsl(var(--castle-wisdom))]" />;
+      case "stone":
+        return <Shield className="text-[hsl(var(--castle-stone))]" />;
+      default:
+        return <Medal />;
+    }
+  };
+
+  const filteredHeroes = filter === "all" ? heroes : heroes.filter(hero => hero.badge === filter);
+
+  return (
+    <CastleLayout className="rtl petra-scrollbar">
+      <div className="petra-sandfall">
+        <CastleBanner
+          title="سجل الأبطال"
+          subtitle="أعلى الطلاب أداءً وإنجازًا في رحلة التميز"
+          icon={<Award className="animate-subtle-bounce" />}
+          variant="gold"
+          className="shadow-lg"
+        />
+      </div>
+      
+      {/* فلاتر للأبطال */}
+      <div className="mb-6 flex flex-wrap gap-2">
+        <CastleButton 
+          variant={filter === "all" ? "gold" : "outline"}
+          onClick={() => setFilter("all")}
+          size="sm"
+        >
+          جميع الأبطال
+        </CastleButton>
+        <CastleButton 
+          variant={filter === "gold" ? "gold" : "outline"}
+          onClick={() => setFilter("gold")}
+          size="sm"
+          icon={<Trophy />}
+        >
+          أبطال ذهبيون
+        </CastleButton>
+        <CastleButton 
+          variant={filter === "magic" ? "magic" : "outline"}
+          onClick={() => setFilter("magic")}
+          size="sm"
+          icon={<Star />}
+        >
+          فرسان المعرفة
+        </CastleButton>
+        <CastleButton 
+          variant={filter === "wisdom" ? "wisdom" : "outline"}
+          onClick={() => setFilter("wisdom")}
+          size="sm"
+          icon={<Crown />}
+        >
+          حكماء الصحراء
+        </CastleButton>
+        <CastleButton 
+          variant={filter === "stone" ? "stone" : "outline"}
+          onClick={() => setFilter("stone")}
+          size="sm"
+          icon={<Shield />}
+        >
+          حراس القلعة
+        </CastleButton>
+      </div>
+      
+      {/* لمحة سريعة عن الثلاثة الأوائل */}
+      {filter === "all" && (
+        <div className="mb-8">
+          <h2 className="text-xl font-bold mb-4 petra-title">أبطال البتراء المتميزون</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {heroes.slice(0, 3).map((hero, index) => (
+              <div 
+                key={hero.id} 
+                className={cn(
+                  "relative petra-panel p-6 text-center transform transition-all",
+                  "hover:-translate-y-1 hover:shadow-lg",
+                  index === 0 && "border-[hsl(var(--castle-gold))]",
+                  index === 1 && "border-[hsl(var(--castle-magic))]",
+                  index === 2 && "border-[hsl(var(--castle-wisdom))]",
+                )}
+              >
+                {index === 0 && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 py-1 px-3 bg-[hsl(var(--castle-gold))] text-white text-xs rounded-full">
+                    🏆 المركز الأول
+                  </div>
+                )}
+                
+                {/* شارة البطل */}
+                <div className="mb-4 flex justify-center">
+                  <div className={cn(
+                    "hero-badge hero-badge-large",
+                    index === 0 ? "bg-[hsl(var(--castle-gold))]" : 
+                    index === 1 ? "bg-[hsl(var(--castle-magic))]" : 
+                    "bg-[hsl(var(--castle-wisdom))]"
+                  )}>
+                    {getBadgeIcon(hero.badge)}
+                  </div>
+                </div>
+                
+                <h3 className="text-lg font-bold rock-shimmer mb-1">{hero.name}</h3>
+                <p className="text-sm opacity-80 mb-3">{hero.rank}</p>
+                
+                <div className="petra-divider mb-3"></div>
+                
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div>
+                    <p className="opacity-70">النقاط</p>
+                    <p className="font-bold text-[hsl(var(--castle-gold))]">{hero.points}</p>
+                  </div>
+                  <div>
+                    <p className="opacity-70">الإنجازات</p>
+                    <p className="font-bold text-[hsl(var(--castle-magic))]">{hero.achievements}</p>
+                  </div>
+                </div>
+                
+                <div className="mt-4">
+                  <span className="petra-badge">المستوى {hero.level}</span>
+                </div>
               </div>
-              <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[hsl(var(--castle-gold))] flex items-center justify-center shadow-lg">
-                <Crown size={16} className="text-black" />
-              </div>
-            </div>
-            
-            <div>
-              <h2 className="text-2xl font-bold">حمزة تيسير التلاحمة</h2>
-              <p className="text-[hsl(var(--primary))] font-medium">الصف العاشر - إدارة أعمال</p>
-            </div>
-            
-            <div className="flex gap-4 flex-wrap justify-center">
-              <div className="badge bg-[hsla(var(--castle-gold)/0.2)] text-[hsl(var(--castle-gold))] px-3 py-1 rounded-full text-sm flex items-center gap-1">
-                <Star size={14} /> 
-                <span>150 نقطة</span>
-              </div>
-              <div className="badge bg-[hsla(var(--primary)/0.1)] text-[hsl(var(--primary))] px-3 py-1 rounded-full text-sm flex items-center gap-1">
-                <Trophy size={14} /> 
-                <span>12 إنجاز</span>
-              </div>
-              <div className="badge bg-[hsla(var(--castle-magic)/0.1)] text-[hsl(var(--castle-magic))] px-3 py-1 rounded-full text-sm flex items-center gap-1">
-                <Award size={14} /> 
-                <span>ذهبي المستوى</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-
-        <h2 className="text-xl font-bold mt-8 mb-4">الإنجازات المحققة</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {achievements.map((achievement) => (
-            <CastleCard 
-              key={achievement.id}
-              variant="stone"
-              className="hover:shadow-lg transition-shadow"
-            >
-              <div className="flex items-center gap-4">
-                <div className={`w-12 h-12 rounded-full ${achievement.bgColor} flex items-center justify-center`}>
-                  {achievement.icon}
+      )}
+      
+      {/* قائمة الأبطال */}
+      <CastleCard title="قائمة الأبطال" variant="stone" className="mt-4">
+        <div className="space-y-4">
+          {filteredHeroes.length === 0 ? (
+            <div className="text-center py-10 opacity-60">
+              <div className="text-4xl mb-4">🔍</div>
+              <p>لا يوجد أبطال في هذه الفئة حاليًا</p>
+            </div>
+          ) : (
+            filteredHeroes.map((hero, index) => (
+              <div 
+                key={hero.id}
+                className="hero-entry petra-card bg-white bg-opacity-5 p-4 rounded-lg flex items-center justify-between"
+                style={{ "--animation-order": index } as React.CSSProperties}
+              >
+                <div className="flex items-center gap-4">
+                  <div className={cn(
+                    "hero-badge",
+                    hero.badge === "gold" ? "bg-[hsl(var(--castle-gold))]" : 
+                    hero.badge === "magic" ? "bg-[hsl(var(--castle-magic))]" : 
+                    hero.badge === "wisdom" ? "bg-[hsl(var(--castle-wisdom))]" : 
+                    "bg-[hsl(var(--castle-stone))]"
+                  )}>
+                    {getBadgeIcon(hero.badge)}
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-bold">{hero.name}</h3>
+                    <p className="text-sm opacity-80">{hero.rank}</p>
+                  </div>
                 </div>
                 
-                <div>
-                  <h3 className="font-bold">{achievement.title}</h3>
-                  <p className="text-sm text-gray-600">{achievement.description}</p>
+                <div className="flex items-center gap-6">
+                  <div className="text-center">
+                    <p className="text-xs opacity-70">النقاط</p>
+                    <p className="font-bold text-[hsl(var(--castle-gold))]">{hero.points}</p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <p className="text-xs opacity-70">الإنجازات</p>
+                    <p className="font-bold text-[hsl(var(--castle-magic))]">{hero.achievements}</p>
+                  </div>
+                  
+                  <div className="text-center hidden md:block">
+                    <p className="text-xs opacity-70">المستوى</p>
+                    <p className="font-bold">{hero.level}</p>
+                  </div>
+                  
+                  <CastleButton 
+                    variant="outline" 
+                    size="sm"
+                    icon={<ArrowRight />}
+                    iconPosition="right"
+                  >
+                    عرض الملف
+                  </CastleButton>
                 </div>
               </div>
-            </CastleCard>
-          ))}
+            ))
+          )}
         </div>
-
-        <h2 className="text-xl font-bold mt-8 mb-4">مؤشرات التقدم</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {progress.map((item) => (
-            <CastleCard key={item.id} variant="stone">
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <h3 className="font-bold">{item.title}</h3>
-                  <span className="text-sm font-medium">{item.percentage}%</span>
-                </div>
-                
-                <div className="w-full h-2 bg-[hsla(var(--border)/0.5)] rounded-full overflow-hidden">
-                  <div 
-                    className={`h-full ${item.barColor}`}
-                    style={{ width: `${item.percentage}%` }}
-                  ></div>
-                </div>
-                
-                <p className="text-sm text-gray-600">{item.description}</p>
-              </div>
-            </CastleCard>
-          ))}
-        </div>
+      </CastleCard>
+      
+      <div className="mt-8 py-4 border-t border-[hsla(var(--border)/0.2)] text-center">
+        <p className="text-sm opacity-70">يتم تحديث سجل الأبطال أسبوعيًا بناءً على الأداء والإنجازات</p>
       </div>
     </CastleLayout>
   );
 };
-
-const achievements = [
-  {
-    id: 1,
-    title: "محلل متميز",
-    description: "حصل على تمييز Distinction في التحليل التجاري",
-    icon: <Medal className="text-[hsl(var(--castle-gold))]" />,
-    bgColor: "bg-[hsla(var(--castle-gold)/0.2)]",
-  },
-  {
-    id: 2,
-    title: "باحث مؤهل",
-    description: "أكمل 10 مهام بحثية بنجاح",
-    icon: <Award className="text-[hsl(var(--castle-magic))]" />,
-    bgColor: "bg-[hsla(var(--castle-magic)/0.1)]",
-  },
-  {
-    id: 3,
-    title: "مفكر نقدي",
-    description: "قدم تحليلًا نقديًا متميزًا في 5 مهام",
-    icon: <Star className="text-[hsl(var(--primary))]" />,
-    bgColor: "bg-[hsla(var(--primary)/0.1)]",
-  },
-  {
-    id: 4,
-    title: "منجز متفوق",
-    description: "حقق أعلى درجة في تقييم الوحدة 19",
-    icon: <Trophy className="text-[hsl(var(--castle-gold))]" />,
-    bgColor: "bg-[hsla(var(--castle-gold)/0.2)]",
-  },
-  {
-    id: 5,
-    title: "طالب مثابر",
-    description: "أكمل جميع المهام قبل الموعد النهائي",
-    icon: <TrendingUp className="text-[hsl(var(--castle-wisdom))]" />,
-    bgColor: "bg-[hsla(var(--castle-wisdom)/0.1)]",
-  },
-  {
-    id: 6,
-    title: "متعاون نشط",
-    description: "شارك في 15 نقاشًا في المنتدى التعليمي",
-    icon: <Users className="text-[hsl(var(--castle-magic))]" />,
-    bgColor: "bg-[hsla(var(--castle-magic)/0.1)]",
-  },
-];
-
-const progress = [
-  {
-    id: 1,
-    title: "إتقان معايير BTEC",
-    percentage: 85,
-    description: "معدل نجاح متميز في معايير Distinction وMerit",
-    barColor: "bg-[hsl(var(--castle-gold))]",
-  },
-  {
-    id: 2,
-    title: "مهارات التحليل",
-    percentage: 92,
-    description: "القدرة على تحليل البيانات وتطبيق النظريات",
-    barColor: "bg-[hsl(var(--castle-magic))]",
-  },
-  {
-    id: 3,
-    title: "الكتابة الأكاديمية",
-    percentage: 78,
-    description: "جودة الكتابة والتنظيم والتوثيق",
-    barColor: "bg-[hsl(var(--primary))]",
-  },
-  {
-    id: 4,
-    title: "تقدم الوحدات الدراسية",
-    percentage: 65,
-    description: "إكمال 13 من 20 وحدة في المنهج الدراسي",
-    barColor: "bg-[hsl(var(--castle-wisdom))]",
-  },
-];
 
 export default HeroesPage;

@@ -1,4 +1,5 @@
 
+
 /* PetraVerse Edition - Custom Styles */
 
 /* Petra Background Effect */
@@ -42,4 +43,202 @@
   z-index: 1;
 }
 
-/* Update main.tsx to import our new CSS file */
+/* Petra specific UI elements */
+.petra-card {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.petra-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, 
+    hsl(var(--castle-gold)), 
+    hsl(var(--castle-magic)), 
+    hsl(var(--castle-wisdom)),
+    hsl(var(--castle-gold)));
+  background-size: 300% 100%;
+  animation: border-flow 3s linear infinite;
+}
+
+.petra-panel {
+  position: relative;
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(var(--castle-stone-rgb), 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.petra-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at top left, rgba(var(--castle-gold-rgb), 0.1), transparent 70%),
+    radial-gradient(ellipse at bottom right, rgba(var(--castle-magic-rgb), 0.1), transparent 70%);
+  pointer-events: none;
+}
+
+.petra-divider {
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(var(--castle-stone-rgb), 0.3), 
+    rgba(var(--castle-gold-rgb), 0.5), 
+    rgba(var(--castle-stone-rgb), 0.3), 
+    transparent);
+}
+
+.petra-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(var(--castle-gold-rgb), 0.2), rgba(var(--castle-magic-rgb), 0.2));
+  border: 1px solid rgba(var(--castle-gold-rgb), 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.petra-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(var(--castle-stone-rgb), 0.2);
+  color: hsl(var(--foreground));
+  transition: all 0.3s ease;
+}
+
+.petra-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(var(--castle-magic-rgb), 0.3);
+  border-color: rgba(var(--castle-magic-rgb), 0.5);
+}
+
+/* Petra text effects */
+.petra-title {
+  position: relative;
+  display: inline-block;
+  font-family: "Noto Kufi Arabic", serif;
+  font-weight: 700;
+  background: linear-gradient(135deg, 
+    hsl(var(--castle-gold)), 
+    hsl(var(--castle-magic)) 60%, 
+    hsl(var(--castle-wisdom)));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.petra-subtitle {
+  font-family: "Amiri", serif;
+  letter-spacing: 0.02em;
+  color: rgba(var(--castle-stone-rgb), 0.9);
+}
+
+/* Desert atmospheric effects */
+.sandstorm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23d7a86e' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.sandstorm.active {
+  opacity: 0.7;
+  animation: petra-sandfall 10s linear infinite;
+}
+
+/* Custom scrollbar */
+.petra-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--castle-stone-rgb), 0.3) transparent;
+}
+
+.petra-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.petra-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.petra-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--castle-stone-rgb), 0.3);
+  border-radius: 9999px;
+}
+
+.petra-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(var(--castle-magic-rgb), 0.5);
+}
+
+/* Hero badge effects */
+.hero-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, hsl(var(--castle-gold)), hsl(var(--castle-fire)));
+  overflow: hidden;
+  box-shadow: 
+    0 4px 12px rgba(var(--castle-gold-rgb), 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+.hero-badge::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hero-badge:hover::before {
+  animation: button-glow 2s ease infinite;
+  opacity: 0.7;
+}
+
+.hero-badge-large {
+  width: 5rem;
+  height: 5rem;
+  font-size: 1.5rem;
+}
+
+/* Animation for heroes page */
+.hero-entry {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fade-in 0.5s ease-out forwards;
+  animation-delay: calc(var(--animation-order) * 0.1s);
+}
+
