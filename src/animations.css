@@ -39,7 +39,7 @@
   }
 }
 
-/* New button animations */
+/* Button animations */
 @keyframes button-press {
   0% { transform: scale(1); }
   50% { transform: scale(0.92); }
@@ -50,6 +50,17 @@
   0% { opacity: 0; transform: scale(1); }
   50% { opacity: 0.3; transform: scale(1.1); }
   100% { opacity: 0; transform: scale(1); }
+}
+
+@keyframes ripple {
+  0% { 
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% { 
+    transform: scale(2);
+    opacity: 0;
+  }
 }
 
 @keyframes pop-on-hover {
@@ -77,6 +88,15 @@
   }
   100% {
     background-position: 100% 100%;
+  }
+}
+
+@keyframes border-flow {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 100% 0;
   }
 }
 
@@ -109,6 +129,10 @@
   animation: subtle-bounce 2s ease infinite;
 }
 
+.animate-ripple {
+  animation: ripple 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
 .button-glow {
   background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
 }
@@ -133,4 +157,10 @@
 
 .glowing {
   animation: glow 2s ease-in-out infinite;
+}
+
+.border-flow {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 200% 100%;
+  animation: border-flow 2s infinite linear;
 }

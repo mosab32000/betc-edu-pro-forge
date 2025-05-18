@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,9 +17,11 @@
 
     --primary: 225 70% 40%;
     --primary-foreground: 210 40% 98%;
+    --primary-rgb: 43, 82, 179;
 
     --secondary: 280 60% 50%;
     --secondary-foreground: 210 40% 98%;
+    --secondary-rgb: 140, 51, 204;
 
     --muted: 230 10% 90%;
     --muted-foreground: 230 40% 40%;
@@ -47,11 +50,17 @@
 
     /* Castle theme specific colors */
     --castle-stone: 230 15% 75%;
+    --castle-stone-rgb: 169, 177, 191;
     --castle-gold: 45 80% 60%;
+    --castle-gold-rgb: 240, 212, 102;
     --castle-magic: 280 60% 50%;
+    --castle-magic-rgb: 140, 51, 204;
     --castle-sky: 210 70% 70%;
+    --castle-sky-rgb: 133, 181, 230;
     --castle-fire: 10 80% 55%;
+    --castle-fire-rgb: 232, 110, 92;
     --castle-wisdom: 180 60% 45%;
+    --castle-wisdom-rgb: 46, 173, 165;
   }
 
   .dark {
@@ -66,9 +75,11 @@
 
     --primary: 225 70% 40%;
     --primary-foreground: 210 40% 98%;
+    --primary-rgb: 43, 82, 179;
 
     --secondary: 280 60% 40%;
     --secondary-foreground: 210 40% 98%;
+    --secondary-rgb: 115, 41, 166;
 
     --muted: 230 30% 20%;
     --muted-foreground: 230 20% 70%;
@@ -95,11 +106,17 @@
 
     /* Dark castle theme specific colors */
     --castle-stone: 230 15% 25%;
+    --castle-stone-rgb: 51, 56, 64;
     --castle-gold: 45 80% 50%;
+    --castle-gold-rgb: 230, 196, 58;
     --castle-magic: 280 60% 40%;
+    --castle-magic-rgb: 115, 41, 166;
     --castle-sky: 210 70% 30%;
+    --castle-sky-rgb: 41, 87, 134;
     --castle-fire: 10 80% 45%;
+    --castle-fire-rgb: 207, 77, 57;
     --castle-wisdom: 180 60% 35%;
+    --castle-wisdom-rgb: 35, 133, 127;
   }
 }
 
