@@ -6,9 +6,10 @@ import { FileText, Award, Info } from "lucide-react";
 import CastleCard from "@/components/castle/CastleCard";
 import EvaluationForm from "@/components/evaluation/EvaluationForm";
 import EvaluationResults from "@/components/evaluation/EvaluationResults";
+import EduAnalyticaProDemo from "@/components/evaluation/EduAnalyticaProDemo";
 
 const BtecEvaluatorPage = () => {
-  const [activeTab, setActiveTab] = useState<"evaluator" | "results" | "about">("evaluator");
+  const [activeTab, setActiveTab] = useState<"evaluator" | "results" | "eduanalytica" | "about">("evaluator");
 
   return (
     <CastleLayout>
@@ -19,9 +20,9 @@ const BtecEvaluatorPage = () => {
         variant="wisdom"
       />
 
-      <div className="flex border-b mb-6">
+      <div className="flex border-b mb-6 overflow-x-auto pb-1">
         <button
-          className={`px-4 py-2 font-medium ${
+          className={`px-4 py-2 font-medium whitespace-nowrap ${
             activeTab === "evaluator"
               ? "border-b-2 border-[hsl(var(--castle-wisdom))] text-[hsl(var(--castle-wisdom))]"
               : "text-gray-500"
@@ -31,7 +32,7 @@ const BtecEvaluatorPage = () => {
           تقييم واجب
         </button>
         <button
-          className={`px-4 py-2 font-medium ${
+          className={`px-4 py-2 font-medium whitespace-nowrap ${
             activeTab === "results"
               ? "border-b-2 border-[hsl(var(--castle-wisdom))] text-[hsl(var(--castle-wisdom))]"
               : "text-gray-500"
@@ -41,7 +42,17 @@ const BtecEvaluatorPage = () => {
           نتائج التقييم
         </button>
         <button
-          className={`px-4 py-2 font-medium ${
+          className={`px-4 py-2 font-medium whitespace-nowrap ${
+            activeTab === "eduanalytica"
+              ? "border-b-2 border-[hsl(var(--castle-wisdom))] text-[hsl(var(--castle-wisdom))]"
+              : "text-gray-500"
+          }`}
+          onClick={() => setActiveTab("eduanalytica")}
+        >
+          EduAnalytica Pro
+        </button>
+        <button
+          className={`px-4 py-2 font-medium whitespace-nowrap ${
             activeTab === "about"
               ? "border-b-2 border-[hsl(var(--castle-wisdom))] text-[hsl(var(--castle-wisdom))]"
               : "text-gray-500"
@@ -58,6 +69,10 @@ const BtecEvaluatorPage = () => {
 
       {activeTab === "results" && (
         <EvaluationResults />
+      )}
+
+      {activeTab === "eduanalytica" && (
+        <EduAnalyticaProDemo />
       )}
 
       {activeTab === "about" && (

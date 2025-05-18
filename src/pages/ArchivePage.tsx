@@ -1,204 +1,176 @@
 
+import { useState } from "react";
 import CastleLayout from "@/components/layout/CastleLayout";
 import CastleBanner from "@/components/castle/CastleBanner";
 import CastleCard from "@/components/castle/CastleCard";
-import { BookCopy, Clock, FileBadge, MessageSquare, FileSearch, BookOpen } from "lucide-react";
-import { useState } from "react";
+import { BookCopy, Search, FileText, CalendarDays, Filter, Download, Eye } from "lucide-react";
 
 const ArchivePage = () => {
-  const [activeFilter, setActiveFilter] = useState<string>("all");
-  
-  const filterProjects = (category: string) => {
-    setActiveFilter(category);
-  };
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  // Sample archive data
+  const archiveItems = [
+    {
+      id: 1,
+      title: "تحليل الملصق التقني للوحدة الرابعة",
+      type: "تقرير",
+      category: "تقييمات",
+      date: "2024-04-15",
+      description: "تحليل شامل للملصق التقني المقدم في وحدة تصميم الشبكات مع توصيات للتحسين"
+    },
+    {
+      id: 2,
+      title: "تقرير أداء الفصل الدراسي الأول",
+      type: "تحليل",
+      category: "تقييمات",
+      date: "2024-03-22",
+      description: "نتائج وتحليلات أداء الطلاب خلال الفصل الدراسي الأول وفق معايير BTEC"
+    },
+    {
+      id: 3,
+      title: "دراسة حالة: مشروع الشبكة اللاسلكية",
+      type: "دراسة",
+      category: "مشاريع",
+      date: "2024-02-10",
+      description: "دراسة تفصيلية للمشروع النموذجي في تصميم الشبكات اللاسلكية وتنفيذها"
+    },
+    {
+      id: 4,
+      title: "ملخص التغذية الراجعة للفصل الثاني",
+      type: "تغذية راجعة",
+      category: "تقييمات",
+      date: "2024-05-05",
+      description: "ملخص للملاحظات والتوصيات التي قدمها الطلاب حول محتوى المادة وطرق التدريس"
+    },
+    {
+      id: 5,
+      title: "دليل معايير BTEC للوحدات التقنية",
+      type: "دليل",
+      category: "مراجع",
+      date: "2024-01-15",
+      description: "دليل تفصيلي يشرح معايير التقييم الخاصة بوحدات BTEC التقنية"
+    },
+    {
+      id: 6,
+      title: "مشروع تطوير تطبيقات الويب - نماذج الطلاب",
+      type: "نماذج",
+      category: "مشاريع",
+      date: "2024-04-28",
+      description: "مجموعة مختارة من مشاريع الطلاب في تطوير تطبيقات الويب مع التعليقات التقييمية"
+    }
+  ];
+
+  // Filter archive items
+  const filteredItems = archiveItems.filter(item => {
+    const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                        item.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory ? item.category === selectedCategory : true;
+    return matchesSearch && matchesCategory;
+  });
+
+  // Get unique categories
+  const categories = [...new Set(archiveItems.map(item => item.category))];
 
   return (
     <CastleLayout>
       <CastleBanner
         title="الدهليز الأزرق"
-        subtitle="أرشيف الدراسات والمشاريع والتغذية الراجعة العاطفية"
+        subtitle="أرشيف الدراسات والمشاريع والتغذية الراجعة"
         icon={<BookCopy />}
         variant="gold"
       />
       
-      {/* Archive Filters */}
-      <div className="flex flex-wrap gap-2 mb-6 justify-center">
-        <FilterButton 
-          label="الكل" 
-          active={activeFilter === "all"} 
-          onClick={() => filterProjects("all")}
-        />
-        <FilterButton 
-          label="المشاريع" 
-          active={activeFilter === "projects"} 
-          onClick={() => filterProjects("projects")}
-        />
-        <FilterButton 
-          label="الدراسات" 
-          active={activeFilter === "studies"} 
-          onClick={() => filterProjects("studies")}
-        />
-        <FilterButton 
-          label="التغذية الراجعة" 
-          active={activeFilter === "feedback"} 
-          onClick={() => filterProjects("feedback")}
-        />
-      </div>
-      
-      {/* Main Content */}
-      <div className="space-y-8">
-        {/* Sentiment Mirror AI Section */}
-        <CastleCard 
-          title="مرآة المشاعر الذكية" 
-          icon={<MessageSquare />}
-          variant="magic"
-          className="mb-6"
-        >
-          <p className="mb-4">تحليل عاطفي متقدم يقيس مشاعرك ويقدم تغذية راجعة تساعدك على تحسين أدائك الأكاديمي.</p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-            <div className="p-3 bg-[hsla(var(--castle-magic)/0.1)] rounded-lg">
-              <h4 className="font-bold mb-2">تحليل نبرة الكتابة</h4>
-              <p className="text-sm">تحديد المشاعر والحالة النفسية من خلال أسلوب الكتابة</p>
+      <div className="mb-8">
+        {/* Search and Filter Bar */}
+        <div className="bg-[hsla(var(--castle-stone)/0.1)] rounded-lg p-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Search */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+              <input
+                type="text"
+                placeholder="البحث في الأرشيف..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full py-2 pr-3 pl-10 border border-[hsl(var(--border))] rounded-md focus:outline-none focus:border-[hsl(var(--castle-gold))]"
+              />
             </div>
-            <div className="p-3 bg-[hsla(var(--castle-magic)/0.1)] rounded-lg">
-              <h4 className="font-bold mb-2">مؤشر الثقة والحيوية</h4>
-              <p className="text-sm">قياس مستوى الثقة والحماس في المشاريع المقدمة</p>
+            
+            {/* Category Filter */}
+            <div className="relative">
+              <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+              <select
+                value={selectedCategory || ''}
+                onChange={(e) => setSelectedCategory(e.target.value || null)}
+                className="w-full py-2 pr-3 pl-10 border border-[hsl(var(--border))] rounded-md focus:outline-none focus:border-[hsl(var(--castle-gold))] appearance-none bg-white"
+              >
+                <option value="">جميع التصنيفات</option>
+                {categories.map(category => (
+                  <option key={category} value={category}>{category}</option>
+                ))}
+              </select>
             </div>
-            <div className="p-3 bg-[hsla(var(--castle-magic)/0.1)] rounded-lg">
-              <h4 className="font-bold mb-2">توصيات التحفيز</h4>
-              <p className="text-sm">نصائح مخصصة لتعزيز الدافعية والإنتاجية</p>
+            
+            {/* Result Count */}
+            <div className="flex items-center justify-end">
+              <span className="text-sm text-gray-500">
+                تم العثور على {filteredItems.length} عنصر
+                {selectedCategory && ` في تصنيف "${selectedCategory}"`}
+              </span>
             </div>
           </div>
-          
-          <div className="h-24 mt-6 bg-[hsla(var(--castle-stone)/0.1)] rounded-lg flex items-center justify-center">
-            <p className="text-sm text-center opacity-70">رسم بياني للحالة العاطفية (قريباً)</p>
-          </div>
-        </CastleCard>
-        
-        {/* Archive Projects Grid */}
-        <div>
-          <h3 className="text-xl font-bold mb-4">المشاريع والدراسات المؤرشفة</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {archiveItems
-              .filter(item => activeFilter === "all" || item.type === activeFilter)
-              .map((item, index) => (
-                <ArchiveItem key={index} item={item} />
-              ))
-            }
-          </div>
+        </div>
+
+        {/* Archive Items */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {filteredItems.length > 0 ? (
+            filteredItems.map(item => (
+              <CastleCard 
+                key={item.id} 
+                variant="stone" 
+                className="hover:shadow-md transition-shadow"
+              >
+                <div className="p-2">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="font-bold text-lg">{item.title}</h3>
+                    <span className="inline-block px-2 py-1 bg-[hsla(var(--castle-gold)/0.1)] text-[hsl(var(--castle-gold))] text-xs rounded-md">
+                      {item.category}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-4">{item.description}</p>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="flex items-center text-gray-500">
+                      <FileText size={14} className="mr-1" />
+                      {item.type}
+                    </span>
+                    <span className="flex items-center text-gray-500">
+                      <CalendarDays size={14} className="mr-1" />
+                      {item.date}
+                    </span>
+                  </div>
+                  <div className="mt-4 flex justify-end gap-2">
+                    <button className="text-xs px-3 py-1 bg-[hsla(var(--castle-wisdom)/0.1)] text-[hsl(var(--castle-wisdom))] rounded flex items-center">
+                      <Eye size={14} className="mr-1" />
+                      عرض
+                    </button>
+                    <button className="text-xs px-3 py-1 bg-[hsla(var(--castle-magic)/0.1)] text-[hsl(var(--castle-magic))] rounded flex items-center">
+                      <Download size={14} className="mr-1" />
+                      تنزيل
+                    </button>
+                  </div>
+                </div>
+              </CastleCard>
+            ))
+          ) : (
+            <div className="col-span-full text-center py-10">
+              <p className="text-gray-500">لا توجد عناصر تطابق معايير البحث</p>
+            </div>
+          )}
         </div>
       </div>
     </CastleLayout>
   );
 };
-
-interface FilterButtonProps {
-  label: string;
-  active: boolean;
-  onClick: () => void;
-}
-
-const FilterButton = ({ label, active, onClick }: FilterButtonProps) => {
-  return (
-    <button
-      onClick={onClick}
-      className={`px-4 py-2 rounded-full text-sm transition-colors ${
-        active 
-          ? "bg-[hsl(var(--castle-gold))] text-black" 
-          : "bg-[hsla(var(--castle-stone)/0.2)] text-foreground hover:bg-[hsla(var(--castle-stone)/0.3)]"
-      }`}
-    >
-      {label}
-    </button>
-  );
-};
-
-interface ArchiveItemProps {
-  item: {
-    title: string;
-    description: string;
-    date: string;
-    type: string;
-    category: string;
-  };
-}
-
-const ArchiveItem = ({ item }: ArchiveItemProps) => {
-  const getIcon = () => {
-    switch(item.type) {
-      case "projects": return <FileBadge className="text-[hsl(var(--castle-gold))]" />;
-      case "studies": return <FileSearch className="text-[hsl(var(--castle-wisdom))]" />;
-      case "feedback": return <MessageSquare className="text-[hsl(var(--castle-magic))]" />;
-      default: return <BookOpen className="text-[hsl(var(--castle-stone))]" />;
-    }
-  };
-
-  return (
-    <div className="border border-[hsla(var(--border)/0.2)] rounded-lg p-4 hover:shadow-md transition-shadow">
-      <div className="flex items-start gap-3">
-        <div className="mt-1">{getIcon()}</div>
-        <div className="flex-1">
-          <h4 className="font-bold mb-1">{item.title}</h4>
-          <p className="text-sm text-gray-600 mb-2">{item.description}</p>
-          <div className="flex items-center justify-between text-xs text-gray-500 mt-2">
-            <span className="flex items-center gap-1">
-              <Clock className="w-3 h-3" /> {item.date}
-            </span>
-            <span className="bg-[hsla(var(--castle-stone)/0.1)] px-2 py-1 rounded-full">
-              {item.category}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const archiveItems = [
-  {
-    title: "تحليل SWOT لشركة أمازون",
-    description: "دراسة تحليلية شاملة لنقاط القوة والضعف والفرص والتهديدات لشركة أمازون",
-    date: "2023-04-15",
-    type: "projects",
-    category: "تحليل الأعمال"
-  },
-  {
-    title: "تأثير التسويق الرقمي على المبيعات",
-    description: "بحث يستكشف العلاقة بين استراتيجيات التسويق الرقمي وزيادة المبيعات",
-    date: "2023-03-22",
-    type: "studies",
-    category: "التسويق"
-  },
-  {
-    title: "تقرير تحليل عاطفي: مشروع P3",
-    description: "تحليل نبرة الكتابة والثقة في مشروع تطوير استراتيجية التسويق",
-    date: "2023-05-10",
-    type: "feedback",
-    category: "التغذية الراجعة"
-  },
-  {
-    title: "خطة عمل لمشروع ريادي",
-    description: "خطة عمل متكاملة لمشروع ريادي في مجال التكنولوجيا الخضراء",
-    date: "2023-02-18",
-    type: "projects",
-    category: "ريادة الأعمال"
-  },
-  {
-    title: "دراسة جدوى لمتجر إلكتروني",
-    description: "تحليل اقتصادي وتسويقي لإنشاء متجر إلكتروني للمنتجات المحلية",
-    date: "2023-06-05",
-    type: "studies",
-    category: "الاقتصاد"
-  },
-  {
-    title: "تقرير تحليل عاطفي: مشروع P1",
-    description: "تحليل الثقة والحيوية في مشروع تحليل السوق للوحدة الأولى",
-    date: "2023-07-20",
-    type: "feedback",
-    category: "التغذية الراجعة"
-  }
-];
 
 export default ArchivePage;

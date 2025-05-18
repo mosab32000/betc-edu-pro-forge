@@ -1,9 +1,10 @@
 
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import CastleSidebar from "./CastleSidebar";
 import Nabata from "../ai/Nabata";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useLocation } from "react-router-dom";
 
 interface CastleLayoutProps {
   children: ReactNode;
@@ -12,6 +13,12 @@ interface CastleLayoutProps {
 
 const CastleLayout = ({ children, className }: CastleLayoutProps) => {
   const isMobile = useIsMobile();
+  const location = useLocation();
+
+  // Scroll to top when route changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div 
@@ -42,7 +49,15 @@ const CastleLayout = ({ children, className }: CastleLayoutProps) => {
           className
         )}
       >
-        {children}
+        {/* Page transition animation wrapper */}
+        <div className="animate-fade-in">
+          {children}
+        </div>
+        
+        {/* Page scroll indicator for mobile */}
+        {isMobile && (
+          <div className="fixed bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[hsl(var(--castle-magic))] to-[hsl(var(--castle-wisdom))] z-50 opacity-80" />
+        )}
       </main>
       
       {/* Nabata AI Assistant */}
