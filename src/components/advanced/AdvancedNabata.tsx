@@ -16,7 +16,7 @@ interface Message {
 }
 
 interface EmotionalState {
-  mood: 'happy' | 'neutral' | 'focused' | 'encouraging';
+  mood: 'happy' | 'neutral' | 'focused' | 'encouraging' | 'excited';
   energy: number; // 0-100
   empathy: number; // 0-100
 }
