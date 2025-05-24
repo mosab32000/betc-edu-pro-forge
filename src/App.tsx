@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import ResearchPage from "./pages/ResearchPage";
 import SecretsPage from "./pages/SecretsPage";
 import ArchivePage from "./pages/ArchivePage";
+import SystemManagementPage from "./pages/SystemManagementPage";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,8 @@ const App = () => (
           <Route path="/research" element={<ResearchPage />} />
           <Route path="/secrets" element={<SecretsPage />} />
           <Route path="/archive" element={<ArchivePage />} />
+          {/* System Management - New comprehensive page */}
+          <Route path="/system" element={<SystemManagementPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

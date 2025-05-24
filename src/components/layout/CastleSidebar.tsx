@@ -1,6 +1,7 @@
+
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
-import { BookOpen, FileText, Users, Home, BookMarked, MessageSquare, Image, Award, Menu, X, FlaskConical, Globe, History, BookCopy } from "lucide-react";
+import { BookOpen, FileText, Users, Home, BookMarked, MessageSquare, Image, Award, Menu, X, FlaskConical, Globe, History, BookCopy, Settings } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
