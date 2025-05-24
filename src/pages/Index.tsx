@@ -4,7 +4,7 @@ import CastleBanner from "@/components/castle/CastleBanner";
 import CastleCard from "@/components/castle/CastleCard";
 import CastleButton from "@/components/castle/CastleButton";
 import LearningPathMap from "@/components/castle/LearningPathMap";
-import { FileText, BookOpen, Users, Award, BookMarked, MessageSquare, Image, ArrowRight, Globe, History, BookCopy, FlaskConical, Compass, Bot } from 'lucide-react';
+import { FileText, BookOpen, Users, Award, BookMarked, MessageSquare, Image, ArrowRight, Globe, History, BookCopy, FlaskConical, Compass, Bot, Palette, Trophy, Camera, Zap, Sparkles, Gamepad2 } from 'lucide-react';
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -19,7 +19,7 @@ const Index = () => {
       <div className="space-y-8">
         {/* Vision Section */}
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold mb-4">مرحباً بك في عالم البتراء الرقمي</h2>
+          <h2 className="text-2xl font-bold mb-4">مرحباً بك في عالم البتراء الرقمي المتقدم</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             منصة تعليمية مبتكرة تجمع بين إرث حضارة الأنباط والتقنيات المتقدمة من الذكاء الاصطناعي والواقع المعزز 
             والبلوكتشين لتحسين جودة التعليم والتقييم وفق معايير Pearson BTEC.
@@ -43,9 +43,9 @@ const Index = () => {
           </div>
         </CastleCard>
 
-        {/* Digital Landmarks Section */}
+        {/* Core Digital Landmarks */}
         <div>
-          <h3 className="text-xl font-bold mb-4 text-center">المعالم الرقمية للقلعة</h3>
+          <h3 className="text-xl font-bold mb-4 text-center">المعالم الأساسية للقلعة</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <CastleFeatureCard 
@@ -73,7 +73,7 @@ const Index = () => {
             />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <CastleFeatureCard 
               title="سجل الأبطال"
               description="تتبع تقدم الطلاب وعرض إنجازاتهم"
@@ -104,6 +104,40 @@ const Index = () => {
               icon={<Image />}
               linkTo="/gallery"
               color="gold"
+            />
+          </div>
+        </div>
+
+        {/* New Advanced Features Section */}
+        <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 rounded-xl p-6 mb-8">
+          <h3 className="text-xl font-bold mb-4 text-center flex items-center justify-center gap-2">
+            <Sparkles className="w-6 h-6 text-purple-600" />
+            الميزات المتقدمة الجديدة
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <CastleFeatureCard 
+              title="ورشة الأنباط للإبداع"
+              description="أدوات ذكية لإنشاء النقوش والقصص والتصاميم النبطية"
+              icon={<Palette />}
+              linkTo="/creative"
+              color="magic"
+            />
+            
+            <CastleFeatureCard 
+              title="مركز التحديات والألعاب"
+              description="نظام شامل للتحفيز والمكافآت مع NFT للإنجازات"
+              icon={<Trophy />}
+              linkTo="/gamification"
+              color="gold"
+            />
+            
+            <CastleFeatureCard 
+              title="تجارب الواقع المعزز"
+              description="استكشاف البتراء بتقنيات AR التفاعلية المتقدمة"
+              icon={<Camera />}
+              linkTo="/ar-experience"
+              color="wisdom"
             />
           </div>
         </div>
@@ -169,39 +203,60 @@ const Index = () => {
           />
         </div>
 
-        {/* Nabata AI Assistant Section */}
-        <div className="bg-[hsla(var(--castle-stone)/0.05)] border border-[hsl(var(--castle-stone))] rounded-xl p-6 mb-8">
+        {/* Advanced Nabata AI Section */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-6 mb-8">
           <div className="flex items-center justify-center gap-6 flex-col md:flex-row">
             <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[hsl(var(--castle-magic))] to-[hsl(var(--castle-wisdom))] flex items-center justify-center">
               <Bot size={40} className="text-white" />
             </div>
             <div className="flex-1 text-center md:text-right">
-              <h3 className="text-xl font-bold mb-2">شخصية "نباطا" التفاعلية</h3>
-              <p className="mb-2">مرشدك الشخصي في رحلة التعلم بلغة عربية فصحى وذكاء اصطناعي متقدم.</p>
+              <h3 className="text-xl font-bold mb-2 flex items-center justify-center md:justify-start gap-2">
+                شخصية "نباطا" التفاعلية المتقدمة
+                <Zap className="w-5 h-5 text-yellow-500" />
+              </h3>
+              <p className="mb-2">مرشدك الشخصي الذكي مع قدرات عاطفية متقدمة وتفاعل صوتي.</p>
               <p className="text-sm text-gray-600">يمكنك التواصل مع "نباطا" في أي وقت من خلال زر المساعد في أسفل يمين الشاشة.</p>
             </div>
           </div>
         </div>
 
+        {/* System Management */}
+        <div className="text-center">
+          <Link to="/system">
+            <CastleButton variant="stone" icon={<ArrowRight className="rtl:rotate-180" />}>
+              مركز إدارة النظام المتقدم
+            </CastleButton>
+          </Link>
+        </div>
+
         {/* Future Features Section */}
         <div className="mt-8 bg-[hsla(var(--castle-stone)/0.1)] border border-[hsl(var(--castle-stone))] rounded-xl p-6">
           <div className="text-center">
-            <h3 className="text-xl font-bold mb-4">قادم قريباً في PetraVerse</h3>
+            <h3 className="text-xl font-bold mb-4">التحديثات القادمة في PetraVerse</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               <div className="p-4 bg-white/50 rounded-lg">
-                <h4 className="font-bold mb-2">تجارب الواقع المعزز</h4>
-                <p className="text-sm">استكشاف النماذج التعليمية بتقنية WebXR المتقدمة</p>
+                <h4 className="font-bold mb-2 flex items-center justify-center gap-2">
+                  <Gamepad2 className="w-4 h-4" />
+                  الألعاب التعليمية VR
+                </h4>
+                <p className="text-sm">تجارب تعليمية غامرة بالواقع الافتراضي</p>
               </div>
               
               <div className="p-4 bg-white/50 rounded-lg">
-                <h4 className="font-bold mb-2">توثيق البلوكتشين</h4>
-                <p className="text-sm">شهادات رقمية موثقة لا يمكن تزويرها على Ethereum</p>
+                <h4 className="font-bold mb-2 flex items-center justify-center gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  الذكاء الاصطناعي التوليدي
+                </h4>
+                <p className="text-sm">إنشاء محتوى تعليمي مخصص لكل طالب</p>
               </div>
               
               <div className="p-4 bg-white/50 rounded-lg">
-                <h4 className="font-bold mb-2">التحليل العاطفي</h4>
-                <p className="text-sm">تعرف على المزاج وتقديم دعم نفسي ذكي للطلاب</p>
+                <h4 className="font-bold mb-2 flex items-center justify-center gap-2">
+                  <Globe className="w-4 h-4" />
+                  التعاون العالمي
+                </h4>
+                <p className="text-sm">منصة للتعاون مع جامعات ومؤسسات عالمية</p>
               </div>
             </div>
           </div>

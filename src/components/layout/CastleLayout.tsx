@@ -1,67 +1,28 @@
 
-import { ReactNode, useEffect } from "react";
-import CastleSidebar from "./CastleSidebar";
-import Nabata from "../ai/Nabata";
-import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { useLocation } from "react-router-dom";
+import React from 'react';
+import CastleSidebar from './CastleSidebar';
+import Nabata from '@/components/ai/Nabata';
+import AdvancedNabata from '@/components/advanced/AdvancedNabata';
 
 interface CastleLayoutProps {
-  children: ReactNode;
-  className?: string;
+  children: React.ReactNode;
 }
 
-const CastleLayout = ({ children, className }: CastleLayoutProps) => {
-  const isMobile = useIsMobile();
-  const location = useLocation();
-
-  // Scroll to top when route changes
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
-
+const CastleLayout = ({ children }: CastleLayoutProps) => {
   return (
-    <div 
-      className={cn(
-        "flex min-h-screen bg-background transition-all duration-300 ease-in-out",
-        isMobile 
-          ? "flex-col overflow-auto" 
-          : "flex-row overflow-hidden",
-        "rtl petra-background"
-      )}
-    >
-      {!isMobile && <CastleSidebar />}
-      {isMobile && (
-        <div className="fixed top-0 w-full z-50 transition-transform duration-300">
-          <CastleSidebar />
-        </div>
-      )}
-      
-      <div className="petra-overlay absolute inset-0 pointer-events-none"></div>
-      
-      <main 
-        className={cn(
-          "flex-1 overflow-auto transition-all duration-300 relative z-10",
-          isMobile 
-            ? "px-3 py-20 sm:px-4 mx-auto w-full max-w-3xl" 
-            : "p-4 md:p-6 lg:p-8 m-0",
-          "petra-content",
-          className
-        )}
-      >
-        {/* Page transition animation wrapper */}
-        <div className="animate-fade-in">
-          {children}
-        </div>
-        
-        {/* Page scroll indicator for mobile */}
-        {isMobile && (
-          <div className="fixed bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[hsl(var(--castle-magic))] to-[hsl(var(--castle-wisdom))] z-50 opacity-80" />
-        )}
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100">
+      <CastleSidebar />
+      <main className="lg:ml-64 p-6">
+        {children}
       </main>
       
-      {/* Nabata AI Assistant */}
-      <Nabata className="bottom-4 right-4" />
+      {/* نباطا المتقدم - مساعد ذكي عائم */}
+      <AdvancedNabata />
+      
+      {/* نباطا الأساسي كبديل احتياطي */}
+      <div className="hidden">
+        <Nabata className="bottom-6 right-6" />
+      </div>
     </div>
   );
 };

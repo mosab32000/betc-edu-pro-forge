@@ -9,8 +9,8 @@ const GamificationPage = () => {
   return (
     <CastleLayout>
       <CastleBanner
-        title="مركز التحديات والإنجازات"
-        subtitle="رحلتك نحو أن تصبح أسطورة نبطية"
+        title="مركز التحديات والألعاب"
+        subtitle="نظام شامل للتحفيز والمكافآت مع توثيق الإنجازات على البلوكتشين"
         icon={<Trophy className="w-8 h-8" />}
         variant="gold"
       />

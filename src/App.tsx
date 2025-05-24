@@ -18,6 +18,10 @@ import ResearchPage from "./pages/ResearchPage";
 import SecretsPage from "./pages/SecretsPage";
 import ArchivePage from "./pages/ArchivePage";
 import SystemManagementPage from "./pages/SystemManagementPage";
+import CreativePage from "./pages/CreativePage";
+import GamificationPage from "./pages/GamificationPage";
+import ARExperiencePage from "./pages/ARExperiencePage";
+import AdvancedNabataPage from "./pages/AdvancedNabataPage";
 
 const queryClient = new QueryClient();
 
@@ -37,12 +41,16 @@ const App = () => (
           <Route path="/library" element={<LibraryPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/btec-evaluator" element={<BtecEvaluatorPage />} />
-          {/* New PetraVerse routes */}
+          {/* PetraVerse Core Routes */}
           <Route path="/research" element={<ResearchPage />} />
           <Route path="/secrets" element={<SecretsPage />} />
           <Route path="/archive" element={<ArchivePage />} />
-          {/* System Management - New comprehensive page */}
           <Route path="/system" element={<SystemManagementPage />} />
+          {/* Advanced Features */}
+          <Route path="/creative" element={<CreativePage />} />
+          <Route path="/gamification" element={<GamificationPage />} />
+          <Route path="/ar-experience" element={<ARExperiencePage />} />
+          <Route path="/nabata" element={<AdvancedNabataPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
