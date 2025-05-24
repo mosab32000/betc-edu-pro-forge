@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Wifi, WifiOff, Download, Upload, Sync, HardDrive, Cloud } from 'lucide-react';
+import { Wifi, WifiOff, Download, Upload, RefreshCw, HardDrive, Cloud } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -185,12 +184,12 @@ const OfflineManager = () => {
           >
             {syncStatus.syncInProgress ? (
               <>
-                <Sync className="w-4 h-4 mr-2 animate-spin" />
+                <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
                 جاري المزامنة...
               </>
             ) : (
               <>
-                <Sync className="w-4 h-4 mr-2" />
+                <RefreshCw className="w-4 h-4 mr-2" />
                 مزامنة الآن
               </>
             )}
