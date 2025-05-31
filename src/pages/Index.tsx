@@ -4,6 +4,7 @@ import CastleBanner from "@/components/castle/CastleBanner";
 import CastleCard from "@/components/castle/CastleCard";
 import CastleButton from "@/components/castle/CastleButton";
 import LearningPathMap from "@/components/castle/LearningPathMap";
+import QuickStats from "@/components/dashboard/QuickStats";
 import { FileText, BookOpen, Users, Award, BookMarked, MessageSquare, Image, ArrowRight, Globe, History, BookCopy, FlaskConical, Compass, Bot, Palette, Trophy, Camera, Zap, Sparkles, Gamepad2 } from 'lucide-react';
 import { Link } from "react-router-dom";
 
@@ -17,6 +18,9 @@ const Index = () => {
       />
 
       <div className="space-y-8">
+        {/* إحصائيات سريعة */}
+        <QuickStats />
+
         {/* Vision Section */}
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold mb-4">مرحباً بك في عالم البتراء الرقمي المتقدم</h2>
