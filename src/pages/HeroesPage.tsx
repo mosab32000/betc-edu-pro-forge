@@ -1,4 +1,3 @@
-
 import CastleLayout from "@/components/layout/CastleLayout";
 import CastleBanner from "@/components/castle/CastleBanner";
 import CastleCard from "@/components/castle/CastleCard";
@@ -121,8 +120,8 @@ const HeroesPage = () => {
   const filteredHeroes = filter === "all" ? heroes : heroes.filter(hero => hero.badge === filter);
 
   return (
-    <CastleLayout className="rtl petra-scrollbar">
-      <div className="petra-sandfall">
+    <CastleLayout>
+      <div className="petra-sandfall rtl petra-scrollbar">
         <CastleBanner
           title="سجل الأبطال"
           subtitle="أعلى الطلاب أداءً وإنجازًا في رحلة التميز"

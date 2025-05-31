@@ -5,7 +5,7 @@ import CastleBanner from '@/components/castle/CastleBanner';
 import NabataeanWorkshop from '@/components/creative/NabataeanWorkshop';
 import CreativeShowcase from '@/components/creative/CreativeShowcase';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Palette, Gallery, Sparkles } from 'lucide-react';
+import { Palette, Image, Sparkles } from 'lucide-react';
 
 const CreativePage = () => {
   return (
@@ -25,7 +25,7 @@ const CreativePage = () => {
               ورشة الإبداع
             </TabsTrigger>
             <TabsTrigger value="showcase" className="flex items-center gap-2">
-              <Gallery className="w-4 h-4" />
+              <Image className="w-4 h-4" />
               معرض الإبداعات
             </TabsTrigger>
           </TabsList>
