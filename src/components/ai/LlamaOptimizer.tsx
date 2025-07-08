@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -12,7 +11,7 @@ import {
   Settings, 
   Brain, 
   Gauge, 
-  Memory, 
+  HardDrive, 
   Cpu, 
   Download,
   Upload,
@@ -122,7 +121,7 @@ const LlamaOptimizer = () => {
             </div>
             
             <div className="text-center p-3 bg-blue-50 rounded-lg">
-              <Memory className="w-6 h-6 mx-auto mb-2 text-blue-600" />
+              <HardDrive className="w-6 h-6 mx-auto mb-2 text-blue-600" />
               <div className="font-bold">{modelConfig.memoryUsage}</div>
               <div className="text-xs text-gray-600">استخدام الذاكرة</div>
             </div>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -13,7 +12,7 @@ import {
   Battery, 
   Home, 
   Bell,
-  Sync,
+  RefreshCw,
   HardDrive,
   Monitor,
   Tablet,
@@ -98,7 +97,7 @@ const PWAManager = () => {
       description: 'مزامنة البيانات تلقائياً عند توفر الاتصال',
       available: true,
       enabled: isOnline,
-      icon: <Sync className="w-4 h-4" />
+      icon: <RefreshCw className="w-4 h-4" />
     },
     {
       name: 'الإشعارات المحلية',
@@ -144,7 +143,7 @@ const PWAManager = () => {
             </div>
 
             <div className="text-center p-3 bg-yellow-50 rounded-lg">
-              <Sync className="w-6 h-6 mx-auto mb-2 text-yellow-600" />
+              <RefreshCw className="w-6 h-6 mx-auto mb-2 text-yellow-600" />
               <div className="font-bold">{lastSync.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit' })}</div>
               <div className="text-xs text-gray-600">آخر مزامنة</div>
             </div>
@@ -236,7 +235,7 @@ const PWAManager = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Button className="h-16 bg-[hsl(var(--castle-magic))]" onClick={() => window.location.reload()}>
           <div className="text-center">
-            <Sync className="w-5 h-5 mx-auto mb-1" />
+            <RefreshCw className="w-5 h-5 mx-auto mb-1" />
             <div>مزامنة البيانات</div>
           </div>
         </Button>
