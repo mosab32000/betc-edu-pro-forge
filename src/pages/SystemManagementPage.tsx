@@ -12,7 +12,7 @@ const SystemManagementPage = () => {
         title="مركز إدارة النظام المتقدم"
         subtitle="لوحة تحكم شاملة لإدارة ومراقبة جميع أنظمة قلعة BTEC مع الذكاء الاصطناعي المتقدم"
         icon={<Settings className="w-8 h-8" />}
-        variant="stone"
+        variant="wisdom"
       />
       <SystemManagementDashboard />
     </CastleLayout>
