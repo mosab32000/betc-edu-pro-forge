@@ -24,7 +24,7 @@ const BtecEvaluatorPage = () => {
         <button
           className={`px-4 py-2 font-medium whitespace-nowrap ${
             activeTab === "evaluator"
-              ? "border-b-2 border-[hsl(var(--castle-wisdom))] text-[hsl(var(--castle-wisdom))]"
+              ? "border-b-2 border-castle-wisdom text-castle-wisdom"
               : "text-gray-500"
           }`}
           onClick={() => setActiveTab("evaluator")}
@@ -34,7 +34,7 @@ const BtecEvaluatorPage = () => {
         <button
           className={`px-4 py-2 font-medium whitespace-nowrap ${
             activeTab === "results"
-              ? "border-b-2 border-[hsl(var(--castle-wisdom))] text-[hsl(var(--castle-wisdom))]"
+              ? "border-b-2 border-castle-wisdom text-castle-wisdom"
               : "text-gray-500"
           }`}
           onClick={() => setActiveTab("results")}
@@ -44,7 +44,7 @@ const BtecEvaluatorPage = () => {
         <button
           className={`px-4 py-2 font-medium whitespace-nowrap ${
             activeTab === "eduanalytica"
-              ? "border-b-2 border-[hsl(var(--castle-wisdom))] text-[hsl(var(--castle-wisdom))]"
+              ? "border-b-2 border-castle-wisdom text-castle-wisdom"
               : "text-gray-500"
           }`}
           onClick={() => setActiveTab("eduanalytica")}
@@ -54,7 +54,7 @@ const BtecEvaluatorPage = () => {
         <button
           className={`px-4 py-2 font-medium whitespace-nowrap ${
             activeTab === "about"
-              ? "border-b-2 border-[hsl(var(--castle-wisdom))] text-[hsl(var(--castle-wisdom))]"
+              ? "border-b-2 border-castle-wisdom text-castle-wisdom"
               : "text-gray-500"
           }`}
           onClick={() => setActiveTab("about")}

@@ -209,6 +209,25 @@ const DharbMillionEngine = () => {
     }
   };
 
+  const metricLabels = {
+    processingSpeed: 'سرعة المعالجة الفائقة',
+    contextualAccuracy: 'دقة الفهم السياقي',
+    predictionPrecision: 'دقة التنبؤات',
+    adaptationRate: 'معدل التكيف الذاتي',
+    realTimeIntegration: 'التكامل الفوري',
+    neuralEfficiency: 'الكفاءة العصبية',
+    semanticUnderstanding: 'الفهم الدلالي العميق',
+    proactiveIntelligence: 'الذكاء الاستباقي'
+  };
+
+  const dimensionLabels = {
+    linguistic: 'اللغوي',
+    logical: 'المنطقي',
+    creative: 'الإبداعي',
+    technical: 'التقني',
+    contextual: 'السياقي'
+  };
+
   return (
     <div className="space-y-6 p-6">
       {/* Engine Header */}
@@ -346,21 +365,10 @@ const DharbMillionEngine = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               {Object.entries(metrics).map(([key, value]) => {
-                const labels = {
-                  processingSpeed: 'سرعة المعالجة الفائقة',
-                  contextualAccuracy: 'دقة الفهم السياقي',
-                  predictionPrecision: 'دقة التنبؤات',
-                  adaptationRate: 'معدل التكيف الذاتي',
-                  realTimeIntegration: 'التكامل الفوري',
-                  neuralEfficiency: 'الكفاءة العصبية',
-                  semanticUnderstanding: 'الفهم الدلالي العميق',
-                  proactiveIntelligence: 'الذكاء الاستباقي'
-                };
-                
                 return (
                   <div key={key} className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium">{labels[key as keyof typeof labels]}</span>
+                      <span className="text-sm font-medium">{metricLabels[key as keyof typeof metricLabels]}</span>
                       <span className={`font-bold ${getMetricColor(value)}`}>
                         {value.toFixed(1)}%
                       </span>
@@ -526,17 +534,9 @@ const DharbMillionEngine = () => {
                           
                           <TabsContent value="dimensions" className="space-y-2">
                             {Object.entries(result.dimensions).map(([key, value]) => {
-                              const labels = {
-                                linguistic: 'اللغوي',
-                                logical: 'المنطقي',
-                                creative: 'الإبداعي',
-                                technical: 'التقني',
-                                contextual: 'السياقي'
-                              };
-                              
                               return (
                                 <div key={key} className="flex items-center justify-between">
-                                  <span className="text-sm">{labels[key as keyof typeof labels]}</span>
+                                  <span className="text-sm">{dimensionLabels[key as keyof typeof dimensionLabels]}</span>
                                   <div className="flex items-center gap-2">
                                     <Progress value={value} className="w-20" />
                                     <span className="text-sm font-medium w-12">{value}%</span>
