@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -302,6 +301,7 @@ const DharbMillionEngine = () => {
         </TabsList>
 
         <TabsContent value="performance" className="space-y-6">
+          
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <Card className="petra-card">
               <CardContent className="p-4">
@@ -382,6 +382,7 @@ const DharbMillionEngine = () => {
         </TabsContent>
 
         <TabsContent value="intelligence" className="space-y-6">
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="petra-card">
               <CardHeader>
@@ -452,6 +453,7 @@ const DharbMillionEngine = () => {
         </TabsContent>
 
         <TabsContent value="learning" className="space-y-6">
+          
           <Card className="petra-card">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -490,6 +492,7 @@ const DharbMillionEngine = () => {
         </TabsContent>
 
         <TabsContent value="analysis" className="space-y-6">
+          
           <Card className="petra-card">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">

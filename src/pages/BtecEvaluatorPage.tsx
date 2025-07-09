@@ -87,7 +87,7 @@ const BtecEvaluatorPage = () => {
               
               <h3 className="text-lg font-bold mt-4">المميزات الرئيسية لنظام ضرب مليون</h3>
               <ul className="space-y-2 list-disc list-inside">
-                <li><strong>سرعة فائقة:</strong> معالجة في أجزاء من الثانية (< 0.5 ثانية لـ 100+ صفحة)</li>
+                <li><strong>سرعة فائقة:</strong> معالجة في أجزاء من الثانية (أقل من 0.5 ثانية لـ 100+ صفحة)</li>
                 <li><strong>دقة خارقة:</strong> تنبؤات ودقة تفوق 99.9% مع تفسير منطقي</li>
                 <li><strong>ذكاء سياقي متقدم:</strong> فهم عميق للنوايا والسياق الثقافي</li>
                 <li><strong>تكيف ذاتي مستمر:</strong> تعلم فوري وتحسين مستمر للأداء</li>
