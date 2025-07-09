@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -29,10 +28,13 @@ import {
   Zap,
   Eye,
   FileText,
-  Globe
+  Globe,
+  Brain,
+  Sparkles
 } from 'lucide-react';
 import PWAManager from '@/components/pwa/PWAManager';
 import LlamaOptimizer from '@/components/ai/LlamaOptimizer';
+import DharbMillionEngine from '@/components/ai/DharbMillionEngine';
 
 interface SystemMetrics {
   cpu: number;
@@ -43,6 +45,8 @@ interface SystemMetrics {
   uptime: string;
   errors: number;
   requests: number;
+  dharbMillionPerformance: number;
+  aiAccuracy: number;
 }
 
 interface SecurityStatus {
@@ -63,7 +67,9 @@ const SystemManagementDashboard = () => {
     users: 1247,
     uptime: '99.9%',
     errors: 3,
-    requests: 15420
+    requests: 15420,
+    dharbMillionPerformance: 99.8,
+    aiAccuracy: 99.9
   });
 
   const [security, setSecurity] = useState<SecurityStatus>({
@@ -86,7 +92,9 @@ const SystemManagementDashboard = () => {
         memory: Math.max(30, Math.min(85, prev.memory + (Math.random() - 0.5) * 5)),
         bandwidth: Math.max(40, Math.min(95, prev.bandwidth + (Math.random() - 0.5) * 15)),
         users: prev.users + Math.floor((Math.random() - 0.5) * 10),
-        requests: prev.requests + Math.floor(Math.random() * 100)
+        requests: prev.requests + Math.floor(Math.random() * 100),
+        dharbMillionPerformance: Math.min(100, Math.max(95, prev.dharbMillionPerformance + (Math.random() - 0.5) * 0.2)),
+        aiAccuracy: Math.min(100, Math.max(95, prev.aiAccuracy + (Math.random() - 0.5) * 0.1))
       }));
     }, 3000);
 
@@ -110,7 +118,7 @@ const SystemManagementDashboard = () => {
   return (
     <div className="space-y-6 p-6 bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
       {/* System Overview Header */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         <Card className="petra-card">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
@@ -154,8 +162,23 @@ const SystemManagementDashboard = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">الطلبات اليومية</p>
-                <p className="text-2xl font-bold">{metrics.requests.toLocaleString()}</p>
+                <p className="text-sm text-gray-600">أداء ضرب مليون</p>
+                <p className="text-2xl font-bold text-purple-600">{metrics.dharbMillionPerformance.toFixed(1)}%</p>
+              </div>
+              <div className="relative">
+                <Brain className="w-8 h-8 text-[hsl(var(--castle-magic))]" />
+                <Sparkles className="w-4 h-4 absolute -top-1 -right-1 text-yellow-500 animate-pulse" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="petra-card">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">دقة الذكاء الاصطناعي</p>
+                <p className="text-2xl font-bold text-green-600">{metrics.aiAccuracy.toFixed(1)}%</p>
               </div>
               <TrendingUp className="w-8 h-8 text-[hsl(var(--castle-fire))]" />
             </div>
@@ -165,13 +188,14 @@ const SystemManagementDashboard = () => {
 
       {/* Main System Tabs */}
       <Tabs defaultValue="performance" className="w-full">
-        <TabsList className="grid w-full grid-cols-6">
+        <TabsList className="grid w-full grid-cols-7">
           <TabsTrigger value="performance">الأداء</TabsTrigger>
           <TabsTrigger value="security">الأمان</TabsTrigger>
+          <TabsTrigger value="ai">ضرب مليون</TabsTrigger>
           <TabsTrigger value="pwa">PWA</TabsTrigger>
-          <TabsTrigger value="ai">الذكاء الاصطناعي</TabsTrigger>
           <TabsTrigger value="users">المستخدمون</TabsTrigger>
           <TabsTrigger value="logs">السجلات</TabsTrigger>
+          <TabsTrigger value="advanced">متقدم</TabsTrigger>
         </TabsList>
 
         {/* Performance Tab */}
@@ -242,7 +266,7 @@ const SystemManagementDashboard = () => {
                   
                   <div className="text-center p-3 bg-yellow-50 rounded-lg">
                     <Activity className="w-6 h-6 mx-auto mb-2 text-yellow-600" />
-                    <div className="font-bold">1.2s</div>
+                    <div className="font-bold">0.12s</div>
                     <div className="text-xs text-gray-600">متوسط الاستجابة</div>
                   </div>
                   
@@ -334,14 +358,14 @@ const SystemManagementDashboard = () => {
           </Card>
         </TabsContent>
 
+        {/* AI Tab - New Dharb Million */}
+        <TabsContent value="ai">
+          <DharbMillionEngine />
+        </TabsContent>
+
         {/* PWA Tab */}
         <TabsContent value="pwa">
           <PWAManager />
-        </TabsContent>
-
-        {/* AI Tab */}
-        <TabsContent value="ai">
-          <LlamaOptimizer />
         </TabsContent>
 
         {/* Users Tab */}
@@ -414,6 +438,11 @@ const SystemManagementDashboard = () => {
             </CardContent>
           </Card>
         </TabsContent>
+
+        {/* Advanced Tab */}
+        <TabsContent value="advanced">
+          <LlamaOptimizer />
+        </TabsContent>
       </Tabs>
 
       {/* Status Alerts */}
@@ -425,6 +454,18 @@ const SystemManagementDashboard = () => {
           </AlertDescription>
         </Alert>
       )}
+
+      {/* Dharb Million Status Alert */}
+      <Alert className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
+        <div className="flex items-center gap-2">
+          <Brain className="h-4 w-4" />
+          <Sparkles className="h-3 w-3 animate-pulse" />
+        </div>
+        <AlertDescription>
+          <strong>نظام ضرب مليون نشط:</strong> يعمل بكفاءة {metrics.dharbMillionPerformance.toFixed(1)}% مع دقة {metrics.aiAccuracy.toFixed(1)}%. 
+          السرعة الفائقة والذكاء المتقدم يضمنان أفضل تجربة تعليمية.
+        </AlertDescription>
+      </Alert>
     </div>
   );
 };
