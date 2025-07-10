@@ -23,6 +23,8 @@ import GamificationPage from "./pages/GamificationPage";
 import ARExperiencePage from "./pages/ARExperiencePage";
 import AdvancedNabataPage from "./pages/AdvancedNabataPage";
 import MinistryIntegrationPage from "./pages/MinistryIntegrationPage";
+import StudentDashboardPage from "./pages/StudentDashboardPage";
+import TeacherDashboardPage from "./pages/TeacherDashboardPage";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +56,9 @@ const App = () => (
           <Route path="/nabata" element={<AdvancedNabataPage />} />
           {/* Ministry Integration */}
           <Route path="/ministry" element={<MinistryIntegrationPage />} />
+          {/* Dashboard Routes */}
+          <Route path="/student-dashboard" element={<StudentDashboardPage />} />
+          <Route path="/teacher-dashboard" element={<TeacherDashboardPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
