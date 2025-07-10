@@ -1,4 +1,3 @@
-
 // نماذج البيانات الخاصة بوزارة التربية والتعليم الأردنية
 
 export interface MinistryEntity {
@@ -57,6 +56,7 @@ export interface EntityMetadata {
   staffCount?: number;
   budget?: number;
   programs?: string[];
+  departments?: string[];
   specializations?: string[];
   achievements?: Achievement[];
   partnerships?: Partnership[];
