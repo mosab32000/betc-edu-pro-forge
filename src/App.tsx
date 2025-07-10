@@ -22,6 +22,7 @@ import CreativePage from "./pages/CreativePage";
 import GamificationPage from "./pages/GamificationPage";
 import ARExperiencePage from "./pages/ARExperiencePage";
 import AdvancedNabataPage from "./pages/AdvancedNabataPage";
+import MinistryIntegrationPage from "./pages/MinistryIntegrationPage";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,8 @@ const App = () => (
           <Route path="/gamification" element={<GamificationPage />} />
           <Route path="/ar-experience" element={<ARExperiencePage />} />
           <Route path="/nabata" element={<AdvancedNabataPage />} />
+          {/* Ministry Integration */}
+          <Route path="/ministry" element={<MinistryIntegrationPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
