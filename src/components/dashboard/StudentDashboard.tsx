@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Book, CheckCircle, Megaphone, Coins, Shield, Rocket, Flask, Users } from 'lucide-react';
+import { Book, CheckCircle, Megaphone, Coins, Shield, Rocket, TestTube, Users } from 'lucide-react';
 
 // البيانات الوهمية للعرض
 const mockDashboardData = {
@@ -193,7 +193,7 @@ const StudentDashboard = () => {
                 <Card>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
-                            <Flask className="h-5 w-5" />
+                            <TestTube className="h-5 w-5" />
                             الوصول السريع
                         </CardTitle>
                     </CardHeader>
