@@ -1,0 +1,21 @@
+name: ci-backend
+on:
+  pull_request:
+    paths:
+      - 'backend/**'
+      - '.github/workflows/ci-backend.yml'
+  push:
+    branches: [main, develop]
+    paths:
+      - 'backend/**'
+
+jobs:
+  backend-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate monorepo structure
+        run: node eduverse-btec/scripts/check-structure.mjs

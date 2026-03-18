@@ -1,0 +1,36 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: staging
+      POSTGRES_PASSWORD: staging
+      POSTGRES_DB: eduverse_staging
+
+  mongo:
+    image: mongo:7
+
+  redis:
+    image: redis:7-alpine
+
+  api-gateway:
+    build: ../../backend/services/api-gateway
+    environment:
+      NODE_ENV: staging
+      PORT: 8080
+    ports:
+      - "8080:8080"
+
+  auth-service:
+    build: ../../backend/services/auth-service
+    environment:
+      NODE_ENV: staging
+      PORT: 8081
+      JWT_SECRET: staging-secret
+
+  frontend:
+    build: ../../frontend
+    environment:
+      NEXT_PUBLIC_API_URL: http://api-gateway:8080
+    depends_on:
+      - api-gateway
