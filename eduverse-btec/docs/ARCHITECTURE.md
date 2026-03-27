@@ -87,3 +87,11 @@ Configuration policy:
 3. Observability-based stabilization.
 4. Gradual national rollout.
 5. Global expansion tracks.
+
+
+## 10. Quality Tooling
+
+- `.editorconfig` enforces cross-language formatting rules.
+- `.prettierrc` defines formatting baseline for TS/JS/JSON/Markdown.
+- `.husky/pre-commit` runs structural and AI quality checks.
+- `scripts/ai_quality_guard.py` performs AI-inspired static heuristic checks before merge.

@@ -16,3 +16,4 @@ Additional architecture docs:
 - `docs/IMPLEMENTATION-STATUS.md`
 - `docs/api/service-contracts.md`
 - `docs/architecture/sequence-diagrams.md`
+- `docs/QUALITY-GUARD.md`

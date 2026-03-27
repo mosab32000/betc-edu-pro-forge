@@ -3,11 +3,13 @@ on:
   pull_request:
     paths:
       - 'backend/**'
+      - 'scripts/**'
       - '.github/workflows/ci-backend.yml'
   push:
     branches: [main, develop]
     paths:
       - 'backend/**'
+      - 'scripts/**'
 
 jobs:
   backend-checks:
@@ -17,5 +19,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
       - name: Validate monorepo structure
         run: node eduverse-btec/scripts/check-structure.mjs
+      - name: Run AI quality guard
+        run: python eduverse-btec/scripts/ai_quality_guard.py --strict
