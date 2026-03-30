@@ -1,0 +1,14 @@
+{
+  "name": "eduverse-contracts",
+  "version": "3.0.0",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:local": "hardhat run scripts/deploy.js --network hardhat"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@openzeppelin/contracts": "^5.0.1",
+    "hardhat": "^2.19.4"
+  }
+}
