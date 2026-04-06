@@ -1,0 +1,13 @@
+# Global ownership
+* @platform-team
+
+# Service-level ownership
+/backend/services/api-gateway/ @platform-team
+/backend/services/auth-service/ @platform-team
+/backend/ @platform-team
+/frontend/ @platform-team
+/mobile/ @platform-team
+/ai-service/ @platform-team
+/contracts/ @platform-team
+/infra/ @platform-team
+/docs/ @platform-team

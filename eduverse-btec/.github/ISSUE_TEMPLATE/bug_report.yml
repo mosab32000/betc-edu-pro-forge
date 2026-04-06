@@ -1,0 +1,19 @@
+name: Bug Report
+description: Report a reproducible bug in any service or app
+title: "[bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Include exact steps and expected behavior
+    validations:
+      required: true
+  - type: input
+    id: service
+    attributes:
+      label: Affected service/app
+      placeholder: backend/auth-service | frontend | ai-service | mobile
+    validations:
+      required: true

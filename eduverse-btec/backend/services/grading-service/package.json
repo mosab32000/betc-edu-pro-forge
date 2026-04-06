@@ -1,0 +1,9 @@
+{
+  "name": "grading-service",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node -e \"console.log('stub service: grading-service')\"",
+    "test": "node --test"
+  }
+}

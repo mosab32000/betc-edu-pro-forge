@@ -1,0 +1,11 @@
+name: cd-staging
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Build and push images, then deploy to staging namespace"

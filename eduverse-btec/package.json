@@ -1,0 +1,21 @@
+{
+  "name": "eduverse-btec-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "backend/services/*",
+    "backend",
+    "frontend",
+    "mobile",
+    "common"
+  ],
+  "scripts": {
+    "test:ai": "PYTHONPATH=ai-service python -m unittest ai-service/tests/test_vector_memory.py ai-service/tests/test_privacy.py",
+    "check:structure": "node scripts/check-structure.mjs",
+    "quality:ai": "python scripts/ai_quality_guard.py --strict",
+    "precommit": "bash .husky/pre-commit",
+    "setup:full": "bash scripts/setup-full.sh",
+    "healthcheck": "bash scripts/healthcheck.sh",
+    "performance-test": "bash scripts/performance-test.sh"
+  }
+}

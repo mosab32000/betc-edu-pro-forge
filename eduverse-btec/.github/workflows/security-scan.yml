@@ -1,0 +1,17 @@
+name: security-scan
+on:
+  pull_request:
+  schedule:
+    - cron: '0 3 * * 1'
+
+jobs:
+  sast-and-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Secret baseline check
+        run: |
+          if rg -n "(AKIA|PRIVATE_KEY=|BEGIN RSA PRIVATE KEY)" eduverse-btec; then
+            echo "Potential secret pattern detected" && exit 1
+          fi
+          echo "No obvious secret patterns found"

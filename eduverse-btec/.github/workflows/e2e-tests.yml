@@ -1,0 +1,11 @@
+name: e2e-tests
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Smoke test instructions
+        run: echo "Run docker compose for staging and execute smoke API tests"
