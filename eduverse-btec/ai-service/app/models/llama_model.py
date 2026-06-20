@@ -1,5 +1,5 @@
 class LlamaModel:
-    async def initialize(self):
+    async def initialize(self) -> None:
         return None
 
     async def generate(self, prompt: str) -> str:
