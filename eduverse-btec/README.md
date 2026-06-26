@@ -1,33 +1,31 @@
-# EduverseAI - قلعة BTEC (Production SaaS Edition)
+# EduverseAI - Production Monorepo
 
-هذا الإصدار يرفع المشروع من scaffold أولي إلى **قاعدة إنتاجية قابلة للتوسع** تشمل:
-- Frontend SaaS UX (Pricing / Analytics / Agent console)
-- Backend APIs آمنة (JWT + RBAC + Validation)
-- AI Service مع **Vector Memory** و **Autonomous Agent**
-- عقود ذكية قابلة للتكامل
-- وثائق تنفيذية وتجارية وتشغيلية ضمن `docs/`
+This repository now follows a production-oriented monorepo shape:
 
-## Quick Start
-```bash
-docker compose up -d --build
-```
+- `backend/` (microservices + legacy service)
+- `frontend/` (Next.js web)
+- `mobile/` (React Native scaffold)
+- `common/` (shared contracts/types)
+- `infra/` (compose, CI, security policies)
+- `docs/` (architecture and operations)
 
-## Key Endpoints
-- Backend:
-  - `POST /api/auth/register`
-  - `POST /api/auth/login`
-  - `GET /api/subscriptions/plans`
-  - `POST /api/subscriptions/subscribe`
-  - `GET /api/analytics/kpis`
-- AI Service:
-  - `POST /memory/upsert`
-  - `POST /memory/query`
-  - `POST /agent/run`
+Primary architecture document: `docs/ARCHITECTURE.md`.
 
-## Documentation
-- Architecture report: `docs/architecture/production-architecture.md`
-- Roadmap: `docs/roadmap/execution-plan.md`
-- API overview: `docs/api/openapi-overview.md`
-- Pricing model: `docs/product/pricing-model.md`
-- Ops/Security runbook: `docs/runbooks/ops-and-security.md`
-- Wireframes: `docs/wireframes/saas-wireframes.md`
+Additional architecture docs:
+- `docs/IMPLEMENTATION-STATUS.md`
+- `docs/api/service-contracts.md`
+- `docs/architecture/sequence-diagrams.md`
+- `docs/QUALITY-GUARD.md`
+
+Root config files added:
+- `pnpm-workspace.yaml`
+- `turbo.json`
+- `tsconfig.base.json`
+- `.npmrc`
+
+Automation scripts:
+- `scripts/bootstrap.sh`
+- `scripts/validate-env.sh`
+- `scripts/run-dev.sh`
+- `scripts/run-staging.sh`
+- `scripts/ci-local.sh`

@@ -1,0 +1,7 @@
+packages:
+  - 'backend'
+  - 'backend/services/*'
+  - 'frontend'
+  - 'mobile'
+  - 'common'
+  - 'contracts'
